@@ -1,5 +1,5 @@
 #!/usr/bin/env python 
-# Created by Daniele Silvestro on 13/06/2011. => dsilvestro@senckenberg.de 
+# Created by Daniele Silvestro on 13/06/2011. => daniele.silvestro@unil.ch 
 import sys
 import os
 import os.path
@@ -21,7 +21,7 @@ print """
                    Senckenberg Research Institute
                      Frankfurt am Main, Germany
                      daniele.silvestro@unil.ch
-                   jan.schnitzler@senckenberg.de
+                    j.schnitzler@uni-leipzig.de
 
  Type 'help' for information on the commands that are available.
 \n"""
@@ -178,7 +178,7 @@ E.g. for a MuSSE analysis with 3 character states > 0.5 0.25 0.7\n> taxon sampli
 				if rand==0: rand="TRUE"
 				else: rand="FALSE"
 				break
-		cmd= """cd "%s/bayesrate/r_functions" &&Rscript select_random_trees.r "%s" %s %s %s""" % (self_path, infile, burnin, ntrees, rand)
+		cmd= """cd "%s/bayesrate/r_functions" &&Rscript select_trees1.4.r "%s" %s %s %s""" % (self_path, infile, burnin, ntrees, rand)
 
 	elif 'remove_outgroup' == model: 
 		tree_list, input_file, name_file, path_dir=read_tree_nexus()

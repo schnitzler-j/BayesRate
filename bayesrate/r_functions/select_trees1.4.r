@@ -1,8 +1,4 @@
-#!/usr/bin/Rscript
-
-arg <- commandArgs(trailingOnly=TRUE)
-
-subsample <- function(file = NULL, burnin = 0.25, samples = 10, random=TRUE)
+subsample <- function(file = NULL, burnin = 0.2, samples = 100, random=TRUE)
 {
 	
 if (!is.null(file)) 
@@ -18,7 +14,7 @@ no<-samples
 x <- scan(filey, what=character(), sep="\n")
 tree.subsamp <- NULL
 
-range <- grep("tree STATE|tree rep.|tree gen.|TREE \\* UNTITLED|TREE UNTITLED", x)    
+range <- grep("tree STATE|tree rep.|tree gen.|TREE \\* UNTITLED|TREE \\* STATE|TREE \\* gen", x)
 end <- grep("End;|END;|end;", x)
 
 if (bi < 1){
@@ -53,13 +49,9 @@ if (grepl("\\.tre", file))
 		{ file2 <- paste(file,"mod") }
 	
 write(tree.subsamp, file=file2)
-cat("  The resampled trees are saved as: ", sprintf("%s", file2), "\n\n")
 
 range <- NULL
 end <- NULL
 tree <- NULL
 file2 <- NULL
 }
-
-subsample(as.character(arg[1]), as.double(arg[2]), as.integer(arg[3]), as.logical(arg[4]))
-
