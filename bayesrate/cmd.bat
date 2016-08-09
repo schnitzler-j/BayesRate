@@ -1,0 +1,1 @@
+cd  "/Users/daniele/Documents/BayesRate/BayesRate.1.5.app/Contents/Resources/Scripts/bayesrate" && python "BayesRateCladeTDI.py" 

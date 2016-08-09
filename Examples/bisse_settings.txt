@@ -1,0 +1,43 @@
+# This file defines the settings for a BiSSE-BMA analysis
+
+output_file       TANK  # Specify the name of the output file
+                           # This is saved in the input file directory
+
+# MODEL SETTINGS
+rho_0             0.17    # Enter the taxon sampling proportion for character state 0
+rho_1             0.12    # Enter the taxon sampling proportion for character state 1
+                          
+BD_model_0        1       # 0: Pure-Birth, 1: Birth-Death (character state 0)
+BD_model_1        1       # 0: Pure-Birth, 1: Birth-Death (character state 1)
+Trait_model       0       # 0: Positive rates, 1: Irreversible (q10=0), 2: Irreversible (q01=0)
+                          
+link_speciation   0       # Set to 1 for symmetric speciation rates (L0=L1)
+link_extinction   1       # Set to 1 for symmetric extinction rates (M0=M1)
+link_trait        0       # Set to 1 for symmetric transition rates (q01=q10)
+                         
+                         
+# PRIORS	         
+prior_r           5       # shape parameter of the exponential prior on the net diversification
+                          # if set to 0 a uniform prior is used
+                         
+prior_a(alpha)    1       # shape parameters of the beta prior on the extinction fraction
+prior_a(beta)     1       # if both set to 1 a uniform prior is used (must be > 0)
+                         
+prior_q           1       # shape parameter of the exponential prior on the net diversification
+                          # if set to 0 a uniform prior is used
+
+# MCMC
+trees             1       # number of trees
+iterations        20000   # number per-tree MCMC iterations
+sampling_freq     100     # sampling frequency
+print_freq        100     # log-to-screen frequency
+burnin            100     # MCMC burnin generations
+win_1             0.5     # size of sliding window (net. div.)
+win_2             0.25    # size of sliding window (ext. frac.)
+win_3             0.05    # size of sliding window (transition)
+  
+
+# TDI settings (only applied if TDI is chosen from the main BayesRate menu)    
+categories        5       # TDI scaling factors
+beta_shape        0.3     # shape beta distributed scaling factors
+path_lib          default # path to library Diversitree (use 'default' to load it from default directory)

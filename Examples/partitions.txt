@@ -1,0 +1,50 @@
+# This file defines the settings for a clade specific analysis
+
+# DEFINE PARTITIONS
+name_partitions	    clade_1 clade_2 # Enter the names of all clades space separated 
+                                    # Names must not contain spaces
+
+output_file         example         # Specify the name of the output file
+                                    # This is saved in the input file directory
+
+# names of the clades should match those defined above and must be followed by ':'
+# to define the members of the clade enter the names of the species (space separated)
+clade_1:        Taxon_01 Taxon_02 Taxon_04 Taxon_05 Taxon_06 Taxon_07 Taxon_08 Taxon_09
+clade_2:        Taxon_18 Taxon_22 Taxon_20 Taxon_15 Taxon_14 Taxon_19 Taxon_23 Taxon_01 Taxon_07 Taxon_12 Taxon_02 Taxon_03 Taxon_17 Taxon_04 Taxon_11
+
+# MODEL SETTINGS
+sampling        0.5 0.7  # Enter the taxon sampling proportion for each clade
+                         # When estimating predictive species richness (Moore and Donoghue 2009)
+                         # the first clade works as the 'training partition' (with taxon sampling).
+                         # To estimate the predictive species for the other clades (e.g. clade_2, 
+                         # clade_3, ...) set their respective taxon sampling to 0.
+
+model           1 0      # boolean 0: Pure-Birth, 1: Birth-Death
+                         # NOTE: for predictive species richness a PB model should be used
+
+part_sequence   0 1      # Use same numbers to link parameters 
+                         # successive numbers must be used starting from 0 (e.g. 0 1 1)
+                         # Note that in case of more than 2 partitions, parameters can be linked
+                         # only between adjacent partitions (e.g. 0 1 1 2)
+
+# PRIORS	 
+prior_r         5        # shape parameter of the exponential prior on the net diversification
+                         # if set to 0 a uniform prior is used
+
+prior_a(alpha)  0        # shape parameters of the beta prior on the extinction fraction
+prior_a(beta)   0        # if both set to 0 a uniform prior is used
+
+
+# MCMC
+trees           100      # number of trees
+iterations      100000   # number per-tree MCMC iterations
+sampling_freq   100      # sampling frequency
+print_freq      1000     # log-to-screen frequency
+burnin          10000    # MCMC burnin generations
+mod_rates       1        # update rates frequency
+std_updates     0.25     # standard deviation of the rate update proposals
+special_rule    0        # apply special constraints (currently only available for 2 partitions)
+                         # 1) link speciation rates [BD, BD] * 3 parameters
+                         # 2) link speciation rates [PB, BD] * 2 parameters
+                         # 3) link speciation rates [BD, PB] * 2 parameters
+                         # 4) link extinction rates [BD, BD] * 3 parameters
