@@ -277,7 +277,7 @@ while True:
 		if cmd in Q[3:5]: help("main")
 		if cmd in Q[5:7]: help("cite")
 		if cmd==Q[7]: menu_opt(6)
-		elif cmd>=1 and cmd<=12: menu_opt(cmd)
+		elif cmd>=1 and cmd<=13: menu_opt(cmd)
 		a=1
 	except(KeyboardInterrupt): 
 		if platform.system() == "Darwin": sys.stdout.write("\x1b]2;BayesRate\x07")
